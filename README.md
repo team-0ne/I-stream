@@ -4,7 +4,6 @@ I-Stream is a front-end movie listing and streaming web application built withou
 Tech Stack
 HTML5Markup and structureTailwind CSS v3Styling, layout, and responsive design (CDN)Vanilla JavaScript (ES6+)All application logic and interactivityGoogle FontsBebas Neue (display) and Outfit (body)localStorageAuth, watchlist, and watch history persistenceHTML5 Video APIIn-browser video playback with custom controls
 
-Cinema Without Borders, A fully front-end movie listing & streaming web app built with Tailwind CSS and Vanilla JavaScript.
 
 
 TECH STACK
