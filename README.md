@@ -6,23 +6,6 @@ HTML5Markup and structureTailwind CSS v3Styling, layout, and responsive design (
 
 Cinema Without Borders — A fully front-end movie listing & streaming web app built with Tailwind CSS and Vanilla JavaScript.
 
-I-STREAM/
-├── build/
-│   ├── assets/
-│   │   └── 7 Tailwind CSS now has HAS 🎉.mp4
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── main.js
-│   └── index.html
-├── node_modules/
-├── src/
-│   └── input.css
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── README.md
-└── tailwind.config.js
 
 TECH STACK
 
