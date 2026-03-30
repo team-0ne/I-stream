@@ -1,11 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I-Stream</title>
+  <link rel="stylesheet" href="css/style.css"/>
+
 </head>
-<body>
-    
+<body class="bg-navy-900 font-body text-white min-h-screen">
+
+  <!--  NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-5 sm:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center gap-5">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-2.5 flex-shrink-0">
+        <div class="logo-mark w-8 h-8 rounded-xl flex items-center justify-center">
+          <svg class="w-4 h-4 text-navy-900" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="font-display text-xl font-800 tracking-[.12em] text-white uppercase">I-Stream</span>
+      </div>
+
+      <!-- Desktop Search -->
+      <div class="hidden md:flex items-center flex-1 max-w-xs mx-auto relative">
+        <svg class="w-4 h-4 text-white/25 absolute left-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input id="search-inp" type="text" placeholder="Search movies…" class="field-input  text-sm w-full"/>
+      </div>
+
+      <!-- Desktop Genre Pills -->
+      <div id="genre-nav" class="hidden md:flex items-center gap-1.5 overflow-x-auto no-scrollbar"></div>
+
+      <!-- User dropdown -->
+      <div class="ml-auto flex items-center gap-2">
+        <div class="relative">
+          <button id="user-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/5 transition-colors">
+            <div id="nav-avatar" class="avatar-mark w-7 h-7 rounded-lg flex items-center justify-center font-display text-navy-900 text-sm font-700 flex-shrink-0">G</div>
+            <span id="nav-name" class="text-sm text-white/50 font-500 hidden sm:block">Guest</span>
+            <svg class="w-3.5 h-3.5 text-white/25" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="user-drop" class="hidden absolute right-0 top-12 w-48 dropdown-menu rounded-2xl py-2 z-50 shadow-2xl">
+            <div class="px-4 py-2.5 border-b border-white/6 mb-1">
+              <p id="drop-name" class="text-sm text-white font-600"></p>
+              <p id="drop-email" class="text-xs text-white/30 truncate mt-0.5"></p>
+            </div>
+            <button id="btn-signout" class="w-full text-left px-4 py-2.5 text-sm text-red-400/70 hover:text-red-400 hover:bg-white/4 transition-all flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+              Sign Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile search toggle -->
+        <button id="mobile-search-btn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-xl hover:bg-white/5 transition-colors text-white/40">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Search Bar -->
+    <div id="mobile-search" class="hidden md:hidden px-0 pt-3">
+      <input id="search-mobile" type="text" placeholder="Search movies…" class="field-input text-sm w-full"/>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero-section" class="relative pt-24" style="min-height:480px">
+    <div id="hero-bg" class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700" style="filter:brightness(.35) saturate(1.2)"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to top,#05071A 0%,#05071A 8%,transparent 45%),linear-gradient(to right,#05071A 0%,transparent 55%)"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pb-16 pt-8 flex items-end" style="min-height:480px">
+      <div class="max-w-lg">
+        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full" style="background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.25)">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+          <span class="text-cyan text-[11px] font-600 tracking-widest uppercase">Featured</span>
+        </div>
+        <h1 id="hero-title" class="font-display text-5xl sm:text-6xl font-800 text-white leading-none mb-3 tracking-tight"></h1>
+        <div id="hero-meta" class="flex flex-wrap items-center gap-2.5 mb-4 text-sm"></div>
+        <p id="hero-desc" class="text-white/45 text-sm leading-relaxed mb-7 line-clamp-2 max-w-md"></p>
+        <div class="flex items-center gap-3">
+          <button id="hero-play-btn" class="cta-btn flex items-center gap-2.5 px-6 py-3.5 rounded-2xl text-sm font-600">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Play Now
+          </button>
+          <button id="hero-info-btn" class="glass-btn flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-600 text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 pb-20">
+
+    <!-- Mobile genre pills -->
+    <div id="genre-mobile" class="flex md:hidden gap-2 overflow-x-auto no-scrollbar py-4 mb-2"></div>
+
+    <!-- Filters row -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 id="section-title" class="font-display text-3xl font-700 text-white tracking-tight">All Movies</h2>
+        <p id="section-count" class="text-white/25 text-xs mt-0.5"></p>
+      </div>
+      <select id="sort-sel" class="field-input text-xs py-2 px-3 w-36 cursor-pointer">
+        <option value="default">Default Order</option>
+        <option value="az">Title A – Z</option>
+        <option value="rating">Highest Rated</option>
+        <option value="year">Newest First</option>
+      </select>
+    </div>
+
+    <!-- Search banner -->
+    <div id="search-banner" class="hidden items-center justify-between mb-5 px-4 py-2.5 rounded-2xl" style="background:rgba(6,182,212,0.07);border:1px solid rgba(6,182,212,0.15)">
+      <p class="text-sm text-white/40">Results for <span id="search-label" class="text-cyan font-600"></span></p>
+      <button id="btn-clear-search" class="text-white/25 hover:text-white text-xs transition-colors">Clear ✕</button>
+    </div>
+
+    <!-- Movie Grid -->
+    <div id="movie-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-24">
+      <p class="text-4xl mb-4">🎬</p>
+      <h3 class="font-display text-2xl text-white/30 mb-2">No movies found</h3>
+      <p class="text-white/20 text-sm mb-6">Try a different search or genre</p>
+      <button id="btn-reset" class="glass-btn px-6 py-2.5 rounded-2xl text-sm text-white font-600">Reset</button>
+    </div>
+  </main>
+
+  <!-- VIDEO MODAL -->
+  <div id="player-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center" style="background:rgba(3,7,18,0.93);backdrop-filter:blur(12px)">
+    <div class="w-full max-w-5xl mx-4 flex flex-col">
+      <div class="flex items-center justify-between mb-3 px-1">
+        <div>
+          <p id="modal-title" class="font-display text-2xl font-700 text-white tracking-tight"></p>
+          <p id="modal-meta" class="text-white/30 text-xs mt-0.5"></p>
+        </div>
+        <button id="btn-close-player" class="w-9 h-9 rounded-xl hover:bg-white/8 transition-colors flex items-center justify-center text-white/40 hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div id="video-wrapper" class="relative w-full rounded-2xl overflow-hidden bg-black" style="aspect-ratio:16/9">
+        <video id="video-el" class="w-full h-full" preload="metadata">
+          <source id="video-src" src="" type="video/mp4"/>
+          Your browser does not support video playback.
+        </video>
+
+        <!-- No source fallback -->
+        <div id="no-src-msg" class="hidden absolute inset-0 flex flex-col items-center justify-center" style="background:#080C28">
+          <svg class="w-12 h-12 text-white/15 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <p class="text-white/30 text-sm font-500">No video source linked</p>
+          <p class="text-white/15 text-xs mt-1">Add a file path to this movie in main.js</p>
+        </div>
+
+        <!-- Controls overlay -->
+        <div id="video-controls" class="absolute inset-0 flex flex-col justify-between p-4 transition-opacity duration-300" style="background:linear-gradient(to top,rgba(3,7,18,.9) 0%,transparent 35%,rgba(3,7,18,.2) 100%);opacity:0">
+          <div class="flex justify-end">
+            <button id="btn-full-top" class="text-white/30 hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+            </button>
+          </div>
+
+          <!-- Flash indicator -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div id="pp-flash" class="w-14 h-14 rounded-full flex items-center justify-center" style="background:rgba(6,182,212,0.2);border:1px solid rgba(6,182,212,0.4);opacity:0;transform:scale(.6);transition:opacity .3s,transform .3s">
+              <svg id="pp-flash-icon" class="w-7 h-7 text-cyan" fill="currentColor" viewBox="0 0 24 24"><path id="pp-flash-path" d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+
+          <!-- Bottom controls -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span id="cur-time" class="text-white/35 text-xs tabular-nums w-10 text-right">0:00</span>
+              <div class="flex-1 relative h-1">
+                <div class="absolute inset-0 rounded-full" style="background:rgba(255,255,255,0.15)"></div>
+                <div id="prog-fill" class="absolute left-0 top-0 h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#06B6D4,#67E8F9)"></div>
+                <input id="prog-bar" type="range" class="progress-range absolute inset-0 w-full opacity-0 cursor-pointer h-full" min="0" max="100" value="0"/>
+              </div>
+              <span id="dur-time" class="text-white/35 text-xs tabular-nums w-10">0:00</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <button id="btn-skip-back" class="text-white/45 hover:text-white text-xs transition-colors">−10s</button>
+                <button id="btn-pp" class="text-white hover:text-cyan transition-colors">
+                  <svg id="pp-icon" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path id="pp-path" d="M8 5v14l11-7z"/></svg>
+                </button>
+                <button id="btn-skip-fwd" class="text-white/45 hover:text-white text-xs transition-colors">+10s</button>
+                <div class="flex items-center gap-2">
+                  <button id="btn-mute" class="text-white/40 hover:text-white transition-colors">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                  </button>
+                  <input id="vol-bar" type="range" class="progress-range w-16" min="0" max="100" value="80"/>
+                </div>
+              </div>
+              <button id="btn-full-bottom" class="text-white/30 hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-[100] flex items-end sm:items-center justify-center" style="background:rgba(3,7,18,0.88);backdrop-filter:blur(10px)">
+    <div class="w-full max-w-2xl mx-4 rounded-t-3xl sm:rounded-3xl overflow-hidden" style="background:#080C28;border:1px solid rgba(255,255,255,0.07)">
+      <div class="relative h-48 sm:h-56">
+        <img id="detail-backdrop" src="" alt="" class="w-full h-full object-cover" style="filter:brightness(.5) saturate(1.3)"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top,#080C28 0%,transparent 60%)"></div>
+        <button id="btn-close-detail" class="absolute top-4 right-4 w-8 h-8 rounded-xl flex items-center justify-center text-white/50 hover:text-white transition-colors" style="background:rgba(5,7,26,0.7)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="p-6 pt-4">
+        <div class="flex items-start gap-4 mb-5">
+          <img id="detail-poster" src="" alt="" class="w-20 rounded-xl flex-shrink-0 shadow-xl -mt-12 relative z-10 border border-white/10" style="aspect-ratio:2/3;object-fit:cover;background:#0D1235"/>
+          <div class="flex-1 min-w-0 pt-1">
+            <h2 id="detail-title" class="font-display text-3xl font-700 text-white leading-tight tracking-tight"></h2>
+            <div id="detail-meta" class="flex flex-wrap items-center gap-2 mt-1.5 text-sm"></div>
+          </div>
+        </div>
+        <p id="detail-desc" class="text-white/45 text-sm leading-relaxed mb-5"></p>
+        <div class="grid grid-cols-2 gap-4 mb-6 text-sm">
+          <div><p class="text-white/20 text-[10px] uppercase tracking-widest mb-1">Director</p><p id="detail-director" class="text-white/65 font-500"></p></div>
+          <div><p class="text-white/20 text-[10px] uppercase tracking-widest mb-1">Cast</p><p id="detail-cast" class="text-white/65 font-500"></p></div>
+          <div><p class="text-white/20 text-[10px] uppercase tracking-widest mb-1">Genre</p><p id="detail-genre" class="text-white/65 font-500"></p></div>
+          <div><p class="text-white/20 text-[10px] uppercase tracking-widest mb-1">Duration</p><p id="detail-dur" class="text-white/65 font-500"></p></div>
+        </div>
+        <button id="detail-play-btn" class="cta-btn w-full py-3.5 rounded-2xl text-sm font-600 flex items-center justify-center gap-2.5">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Play Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

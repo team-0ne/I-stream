@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I-Stream — Sign In</title>
+  <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body class="bg-navy-900 font-body min-h-screen flex overflow-hidden">
+
+  <!-- Left Panel -->
+  <div class="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-12" style="background:linear-gradient(145deg,#05071A 0%,#080C28 60%,#0D1235 100%)">
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(6,182,212,1) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,1) 1px,transparent 1px);background-size:40px 40px"></div>
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(6,182,212,0.12) 0%,transparent 70%)"></div>
+
+    <div class="relative z-10 flex items-center gap-3">
+      <div class="logo-mark w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-navy-900" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span class="font-display text-2xl font-800 tracking-[.12em] text-white uppercase">I-Stream</span>
+    </div>
+
+    <div class="relative z-10 ">
+      <h1 id="login" class="font-display text-8xl font-800 text-white leading-tight mb-5 flex flex-col">
+        Everything <span>you want</span><span class="text-cyan">to watch.</span>
+      </h1>
+      <p class="text-white/35 text-base font-300 leading-relaxed max-w-xs">Stream your favourite movies from your own collection, all in one place.</p>
+    </div>
+
+    <div class="relative z-10 flex items-center gap-4">
+      <div class="flex -space-x-2">
+        <div class="w-8 h-8 rounded-full border-2 border-navy-900 bg-gradient-to-br from-cyan to-blue-500"></div>
+        <div class="w-8 h-8 rounded-full border-2 border-navy-900 bg-gradient-to-br from-violet-500 to-purple-700"></div>
+        <div class="w-8 h-8 rounded-full border-2 border-navy-900 bg-gradient-to-br from-emerald-400 to-teal-600"></div>
+      </div>
+      <p class="text-white/25 text-xs">Join thousands of viewers worldwide</p>
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 relative" style="background:#05071A">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 80% 20%,rgba(6,182,212,0.05) 0%,transparent 55%)"></div>
+
+    <div class="w-full max-w-sm relative z-10">
+
+      <!-- Mobile logo -->
+      <div class="flex items-center gap-2.5 mb-10 lg:hidden">
+        <div class="logo-mark w-8 h-8 rounded-xl flex items-center justify-center">
+          <svg class="w-4 h-4 text-navy-900" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="font-display text-xl font-800 tracking-[.12em] text-white uppercase">I-Stream</span>
+      </div>
+
+      <h2 id="auth-heading" class="font-display text-4xl font-700 text-white mb-1.5">Welcome back</h2>
+      <p id="auth-sub" class="text-white/30 text-sm mb-8">Sign in to continue watching</p>
+
+      <!-- Tabs -->
+      <div class="flex gap-1.5 p-1 rounded-2xl mb-7" style="background:#080C28;border:1px solid rgba(255,255,255,0.06)">
+        <button id="tab-login" class="tab-btn flex-1 py-2.5 rounded-xl text-sm font-600 transition-all active-tab">Sign In</button>
+        <button id="tab-register" class="tab-btn flex-1 py-2.5 rounded-xl text-sm font-600 transition-all inactive-tab">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="form-login" class="space-y-4">
+        <div class="field-group">
+          <label class="field-label">Email address</label>
+          <input id="li-email" type="email" placeholder="favour@email.com" class="field-input"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <div class="relative">
+            <input id="li-pass" type="password" placeholder="********" class="field-input pr-11"/>
+            <button id="li-toggle" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors text-xs">Show</button>
+          </div>
+        </div>
+        <p id="login-err" class="hidden text-red-400 text-xs px-1"></p>
+        <button id="btn-login" class="cta-btn w-full py-3.5 rounded-2xl text-sm font-600 mt-1">Sign In</button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="form-register" class="space-y-4 hidden">
+        <div class="field-group">
+          <label class="field-label">Full name</label>
+          <input id="rg-name" type="text" placeholder="samuel favour" class="field-input"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email address</label>
+          <input id="rg-email" type="email" placeholder="favour@email.com" class="field-input"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Password <span class="text-white/20 font-400"></span></label>
+          <div class="relative">
+            <input id="rg-pass" type="password" placeholder="********" class="field-input pr-11"/>
+            <button id="rg-toggle" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors text-xs">Show</button>
+          </div>
+        </div>
+        <p id="reg-err" class="hidden text-red-400 text-xs px-1"></p>
+        <button id="btn-register" class="cta-btn w-full py-3.5 rounded-2xl text-sm font-600 mt-1">Create Account</button>
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 my-6">
+        <div class="flex-1 h-px" style="background:rgba(255,255,255,0.07)"></div>
+        <span class="text-white/20 text-xs">or</span>
+        <div class="flex-1 h-px" style="background:rgba(255,255,255,0.07)"></div>
+      </div>
+
+      <button id="btn-guest" class="w-full py-3.5 rounded-2xl text-sm font-600 text-white/50 hover:text-white transition-all guest-btn">
+        Continue as Guest
+      </button>
+
+      <p class="text-center  text-white/15 text-[11px] mt-7 leading-relaxed">
+        By continuing you agree to I-Stream's Terms of Service and Privacy Policy
+      </p>
+    </div>
+  </div>
+ 
+  <script src="js/login.js"></script>
+</body>
+</html>
