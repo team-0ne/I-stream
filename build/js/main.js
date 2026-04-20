@@ -74,7 +74,7 @@ const MOVIES = [
   {
     id: 3,
     title: 'Sample Movie Three',
-    src: '',
+    src: 'https://www.youtube.com/watch?v=ITjGVK742wU',
     poster: 'https://picsum.photos/seed/is3p/300/450',
     backdrop: 'https://picsum.photos/seed/is3b/1280/720',
     year: 2023,
