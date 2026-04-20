@@ -59,7 +59,7 @@ const MOVIES = [
   {
     id: 2,
     title: 'Sample Movie Two',
-    src: '',                                   // ← no source yet
+    src: 'https://www.youtube.com/watch?v=YV2cW6ybY0M',                                   // ← no source yet
     poster: 'https://picsum.photos/seed/is2p/300/450',
     backdrop: 'https://picsum.photos/seed/is2b/1280/720',
     year: 2023,
